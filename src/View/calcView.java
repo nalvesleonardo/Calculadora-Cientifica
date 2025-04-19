@@ -56,22 +56,14 @@ public class calcView extends JFrame {
                 double valor1 = Double.parseDouble(partes[0]);
                 String operador = partes[1];
                 double valor2 = Double.parseDouble(partes[2]);
-                double resultado = 0;
+                double resultado = switch (operador) {
+                    case "+" -> calcModel.soma(valor1, valor2);
+                    case "-" -> calcModel.subtracao(valor1, valor2);
+                    case "*" -> calcModel.multiplicacao(valor1, valor2);
+                    case "/" -> calcModel.divisao(valor1, valor2);
+                    default -> 0;
+                };
 
-                switch (operador) {
-                    case "+":
-                        resultado = calcModel.soma(valor1, valor2);
-                        break;
-                    case "-":
-                        resultado = calcModel.subtracao(valor1, valor2);
-                        break;
-                    case "*":
-                        resultado = calcModel.multiplicacao(valor1, valor2);
-                        break;
-                    case "/":
-                        resultado = calcModel.divisao(valor1, valor2);
-                        break;
-                }
                 visor.setText(String.valueOf(resultado));
             }
         });
